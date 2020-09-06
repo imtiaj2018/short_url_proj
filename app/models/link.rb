@@ -16,12 +16,6 @@ class Link < ApplicationRecord
 	end
 	
 	def self.shorten(url,slug = '')
-		# myUri = URI.parse(url)
-		# url_host=myUri.host
-		# url_port=""
-		# url_port=":"+myUri.port.to_s if myUri.port
-		# url_host=url_host + url_port
-		# return short when URL with that slug was created before
 		link = Link.where(url: url, slug: slug).first
 		return link.short if link 
 
@@ -29,13 +23,9 @@ class Link < ApplicationRecord
 		link = Link.new(url: url, slug: slug)
 		link.short_link=link.short
 		return link.short if link.save
-		
-
-		# if slug is taken, try to add random characters
-		# Link.shorten(url,slug + SecureRandom.alphanumeric[0..2])
 	end
 	
-	def self.get_analytics_data
+	def self.get_analytics_data #for stats to get the analytics data
 		return Link.find_by_sql("SELECT lin.url, lin.slug,lin.short_link,lin.clicked, GROUP_CONCAT(DISTINCT ana.country_name) AS c_name FROM links lin,analytics ana WHERE ana.slug_id=lin.id GROUP BY ana.slug_id")
 	end
 end

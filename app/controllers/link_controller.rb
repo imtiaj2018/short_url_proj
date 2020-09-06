@@ -24,9 +24,6 @@ class LinkController < ApplicationController
 		render :plain=>short_link
 	end
 	
-	def test
-	end
-	
 	def page_404
 		#404 page when link not exist
 	end
