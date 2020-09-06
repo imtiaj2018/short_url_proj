@@ -1,0 +1,39 @@
+<script src="/javascripts/jquery.js"></script>
+
+<style>
+	
+</style>
+
+
+<html>  
+	<div style="font-size:20px; font-weight: bold;color: #be3364;float:left; margin-bottom: 5px;float:left;width:100%;margin-bottom:50px;">
+		Analytics
+	</div>
+	<table id="short_url_tbl" style="font-size: 20px;" border="0">
+		<% for i in 0..@get_analytics_data.length-1 %>
+			<tr>
+			<td><b><%= @get_analytics_data[i]["url"] %></b></td>
+			</tr>
+			<tr>
+			<td><%= @get_analytics_data[i]["short_link"] %><%= @get_analytics_data[i]["slug"] %></td>
+			</tr>
+			<tr>
+			<td></td>
+			</tr>
+			<tr>
+			<td></td>
+			</tr>
+			<tr>
+			<td>Total Clicks: </td>
+			<td width="200px"><%= @get_analytics_data[i]["clicked"] %></td>
+			</tr>
+			<tr>
+			<td>Top Countries: </td>
+			<td><%= @get_analytics_data[i]["c_name"] %></td>
+			</tr>
+			<tr>
+			<td>=================================================</td>
+			</tr>
+		<% end %>
+	</table>
+</html>

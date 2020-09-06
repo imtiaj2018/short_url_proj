@@ -1,0 +1,51 @@
+<script src="/javascripts/jquery.js"></script>
+
+<style>
+	
+</style>
+
+
+<html>  
+	<div style="font-size:20px; font-weight: bold;color: #be3364;float:left; margin-bottom: 5px;float:left;width:100%;margin-bottom:50px;">
+		Welcome to short URL app
+	</div>
+	<table id="short_url_tbl" style="font-size: 20px; border-spacing: 0px 0; margin-top:20px;" border="0">
+		<tr> 
+			<td colspan = "2" class="header_td">Please enter your URL:</td>						
+		</tr>
+		<tr>
+			<td colspan = "2">
+				<div style="width:100%;">
+					<input type="text" name="url_name" id="url_name" value="" style="width:100%;"></input>
+				</div>
+			</td>
+			<td colspan = "2">
+				<input type="button" name="shorten_btn" value="SHORTEN" style="width:100px;" onclick="get_shorten_url();"></input>
+			</td>
+		</tr>
+	</table> 
+	
+	<table width="100%">
+		<tr>			
+			<div id="message_div"></div>
+		</tr>
+	</table> 
+	
+</html>
+
+<script>
+
+	function get_shorten_url(){
+		var main_url= $("#url_name").val();
+		$.ajax({
+			type: "get",
+			url: "/get_shorten_url",
+			data: "main_url="+main_url, 
+			success: function(msg){  
+				$("#message_div").val(msg);
+			}
+		});
+	}
+	
+	
+</script>
