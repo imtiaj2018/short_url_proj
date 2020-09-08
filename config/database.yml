@@ -48,7 +48,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: short_url_proj_production
-  username: short_url_proj
-  password: <%= ENV['SHORT_URL_PROJ_DATABASE_PASSWORD'] %>
+  host: remotemysql.com
+  database: IaigvrEfGp
+  username: IaigvrEfGp
+  password: DDzZfUatRu
+  port: 3306
