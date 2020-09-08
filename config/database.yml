@@ -13,13 +13,14 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: root
-  host: 127.0.0.1
+  
 
 development:
   <<: *default
   database: short_url_proj_db
+  username: root
+  password: root
+  host: 127.0.0.1
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -48,8 +49,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  host: remotemysql.com
+  <<: *default
   database: IaigvrEfGp
   username: IaigvrEfGp
   password: DDzZfUatRu
+  host: remotemysql.com
   port: 3306
