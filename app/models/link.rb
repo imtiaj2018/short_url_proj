@@ -7,7 +7,7 @@ class Link < ApplicationRecord
 	validates_length_of :slug, within: 3..255, on: :create, message: "too long"
 	
 	def short
-		Rails.application.routes.url_helpers.short_url(slug: self.slug, host: "localhost:3000")
+		Rails.application.routes.url_helpers.short_url(slug: self.slug, host: self.host_name)
 	end
 	
 	def generate_slug
@@ -15,12 +15,12 @@ class Link < ApplicationRecord
 		true
 	end
 	
-	def self.shorten(url,slug = '')
+	def self.shorten(url,hostname,slug = '')
 		link = Link.where(url: url, slug: slug).first
 		return link.short if link 
 
 		# create a new
-		link = Link.new(url: url, slug: slug)
+		link = Link.new(url: url, slug: slug, host_name: hostname)
 		link.short_link=link.short
 		return link.short if link.save
 	end

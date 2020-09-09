@@ -20,7 +20,8 @@ class LinkController < ApplicationController
 	
 	def get_shorten_url
 		main_url=params[:main_url]
-		short_link=Link.shorten(main_url)
+		host_name=request.host
+		short_link=Link.shorten(main_url,host_name)
 		render :plain=>short_link
 	end
 	
